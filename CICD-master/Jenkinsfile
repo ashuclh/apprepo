@@ -23,6 +23,7 @@ pipeline {
 	
 	//Stage 2: Test Code with Maven/built-in Memory
 	stage('Test with Maven/H2') {
+	     steps {	
 		container('maven'){
 			dir ("./${app1_name}") {
 				
@@ -30,10 +31,11 @@ pipeline {
 				    } 
 		}
 	}
-	
+}	
 	
 	//Stage 3: Test Code with Maven/DB
 	stage('Test with Maven/PSQL') {
+	     steps {
 		container('kubectl'){
 			withKubeConfig([credentialsId: env.K8s_CREDENTIALS_ID,
 			serverUrl: env.K8s_SERVER_URL,
@@ -50,12 +52,13 @@ pipeline {
 			}
 		}
 	}
-	
+}	
 	
 	
 	
 	//Stage 4: Build with mvn
 	stage('Build with Maven') {
+	     steps {
 		container('maven'){
 			dir ("./${app1_name}") {
 				
@@ -67,19 +70,21 @@ pipeline {
 			}
 		}
 	}
-	
+}	
 
 	//Stage 5: Build Docker Image	
 	stage('Build Docker Image') {
+	     steps {
 		container('docker'){
 			sh("docker build -f ${app1_dockerfile_name} -t ${app1_image_tag} .")
 			sh("docker build -f ${app2_dockerfile_name} -t ${app2_image_tag} .")
 		}
 		
 	}
-
+}
 	//Stage 6: Push the Image to a Docker Registry
 	stage('Push Docker Image to Docker Registry') {
+	     steps {
 		container('docker'){
 //			withCredentials([[$class: 'UsernamePasswordMultiBinding',
 //			credentialsId: env.DOCKER_CREDENTIALS_ID,
@@ -92,10 +97,11 @@ pipeline {
 				}
 			}
 		}
-		
+}	
 
 	//Stage 7: Deploy Application on K8s
 	stage('Deploy Application on K8s') {
+	     steps {
 		container('kubectl'){
 			withKubeConfig([credentialsId: env.K8s_CREDENTIALS_ID,
 			serverUrl: env.K8s_SERVER_URL,
@@ -114,4 +120,5 @@ pipeline {
 	}
 
    }
-}
+ }
+}	
