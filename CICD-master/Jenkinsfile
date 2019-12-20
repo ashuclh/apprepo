@@ -14,11 +14,12 @@ pipeline {
 	//Define all variables
 	
 	//Stage 1: Checkout Code from Git
-	stage('Application Code Checkout from Git') {
+      stage('Application Code Checkout from Git') {
+	  steps {    
 		checkout scm
 		
 	}
-	
+  }	
 	
 	//Stage 2: Test Code with Maven/built-in Memory
 	stage('Test with Maven/H2') {
