@@ -48,6 +48,7 @@ pipeline {
 		}
 		container('maven'){ 
 			dir ("./${app1_name}") {
+				sh ("ls -lrt") 
 				sh ("mvn test -Dspring.profiles.active=prod -Dspring.datasource.url=jdbc:postgresql://${env.PSQL_TEST}/${env.DB_NAME} -Dspring.datasource.username=${env.DB_USERNAME} -Dspring.datasource.password=${env.DB_PASSWORD}")
 			}
 		}
