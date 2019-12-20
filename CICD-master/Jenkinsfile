@@ -26,8 +26,8 @@ pipeline {
 	     steps {	
 		container('maven'){
 			dir ("./${app1_name}") {
-				
-				sh ("mvn test -Dspring.profiles.active=dev")
+				sh ("ls -lrt")
+				sh ("mvn -e test -Dspring.profiles.active=dev")
 				    } 
 		}
 	}
