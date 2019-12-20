@@ -25,9 +25,7 @@ pipeline {
 	stage('Test with Maven/H2') {
 	     steps {	
 		container('maven'){
-			dir ("./${app1_name}") {
-				sh ("cd ..")
-				sh ("ls -lrt")
+			dir ("${app1_name}") {
 				sh ("mvn -e test -Dspring.profiles.active=dev")
 				    } 
 		}
