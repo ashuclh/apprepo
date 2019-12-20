@@ -89,7 +89,6 @@ node {
 			}
 		}
 		
-	}
 
 	//Stage 7: Deploy Application on K8s
 	stage('Deploy Application on K8s') {
