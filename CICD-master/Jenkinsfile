@@ -77,11 +77,12 @@ node {
 	//Stage 6: Push the Image to a Docker Registry
 	stage('Push Docker Image to Docker Registry') {
 		container('docker'){
-			withCredentials([[$class: 'UsernamePasswordMultiBinding',
-			credentialsId: env.DOCKER_CREDENTIALS_ID,
-			usernameVariable: 'USERNAME',
-			passwordVariable: 'PASSWORD']]) {
-				docker.withRegistry(env.DOCEKR_REGISTRY, env.DOCKER_CREDENTIALS_ID) {
+#			withCredentials([[$class: 'UsernamePasswordMultiBinding',
+#			credentialsId: env.DOCKER_CREDENTIALS_ID,
+#			usernameVariable: 'USERNAME',
+#			passwordVariable: 'PASSWORD']]) {
+#				docker.withRegistry(env.DOCEKR_REGISTRY, env.DOCKER_CREDENTIALS_ID) 
+	                        withDockerRegistry(credentialsId: 'source:ashwin-test-240009', url: 'gcr.io'){
 					sh("docker push ${app1_image_tag}")
 					sh("docker push ${app2_image_tag}")
 				}
