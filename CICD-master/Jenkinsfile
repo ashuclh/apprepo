@@ -48,7 +48,7 @@ pipeline {
 				
 		}
 		container('maven'){ 
-			dir ("./${app1_name}") {
+			dir ("CICD-master/${app1_name}") {
 				sh ("mvn test -Dspring.profiles.active=prod -Dspring.datasource.url=jdbc:postgresql://${env.PSQL_TEST}/${env.DB_NAME} -Dspring.datasource.username=${env.DB_USERNAME} -Dspring.datasource.password=${env.DB_PASSWORD}")
 			}
 		}
@@ -61,11 +61,11 @@ pipeline {
 	stage('Build with Maven') {
 	     steps {
 		container('maven'){
-			dir ("./${app1_name}") {
+			dir ("CICD-master/${app1_name}") {
 				
 				sh ("mvn -B -DskipTests clean package")
 			}
-			dir ("./${app2_name}") {
+			dir ("CICD-master/${app2_name}") {
 				
 				sh ("mvn -B -DskipTests clean package")
 			}
