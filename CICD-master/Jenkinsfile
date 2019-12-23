@@ -8,14 +8,13 @@
 	def app1_container_name = 'todobackend'
 	def app2_container_name = 'todoui'
 	
-node('any') {
+node {
 //agent { label 'cd-jenkins-slave' }
-     stages {
-	
-	//Stage 1: Checkout Code from Git
-      stage('Application Code Checkout from Git') {
-	  steps {    
-		checkout scm
+//stages {
+//Stage 1: Checkout Code from Git
+   stage('Application Code Checkout from Git') {
+     steps {    
+	checkout scm
 		
 	}
   }	
