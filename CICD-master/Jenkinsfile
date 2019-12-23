@@ -9,8 +9,8 @@
 	def app2_container_name = 'todoui'
 	
 pipeline {
-  agent { label 'cd-jenkins-slave' }
-  stages {
+   agent { label 'cd-jenkins-slave' }
+   stages {
 //Stage 1: Checkout Code from Git
      stage('Application Code Checkout from Git') {
          steps {    
@@ -18,7 +18,7 @@ pipeline {
 		
 	}
    }	
-}	
+	
 	//Stage 2: Test Code with Maven/built-in Memory
 	stage('Test with Maven/H2') {
 	     steps {	
@@ -120,3 +120,4 @@ pipeline {
 
       }
     }	
+}
