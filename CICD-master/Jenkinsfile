@@ -8,7 +8,7 @@
 	def app1_container_name = 'todobackend'
 	def app2_container_name = 'todoui'
 	
-pipeline{
+pipeline {
   agent { label 'cd-jenkins-slave' }
   stages {
 //Stage 1: Checkout Code from Git
