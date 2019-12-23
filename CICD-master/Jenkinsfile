@@ -9,12 +9,12 @@
 	def app2_container_name = 'todoui'
 	
 pipeline {
-    agent any
-    stages {
-       //Stage 1: Checkout Code from Git
-          stage('Application Code Checkout from Git') {
-               steps {    
-	           checkout scm 	
+   agent any
+   //Stage 1: Checkout code
+   stages {
+      stage('Application Code Checkout from Git') {
+         steps {    
+	    checkout scm 	
 	}
    }	
 	
