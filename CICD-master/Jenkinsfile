@@ -10,7 +10,7 @@
 	
 pipeline {
      agent { label 'cd-jenkins-slave' }
-       stages {
+     stages {
 	
 	//Stage 1: Checkout Code from Git
       stage('Application Code Checkout from Git') {
