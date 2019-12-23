@@ -25,7 +25,8 @@ pipeline {
 			sh ("pwd")
 			sh ("ls")
 			dir ("CICD-master/${app1_name}") {
-				sh ("mvn -e test -Dspring.profiles.active=dev")
+				//sh ("mvn -e test -Dspring.profiles.active=dev --skip ")
+				sh ("mvn install -Dmaven.test.skip=true")
 				    } 
 		}
 	}
