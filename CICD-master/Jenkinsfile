@@ -7,7 +7,9 @@
 	def app2_dockerfile_name = 'Dockerfile-todoui'
 	def app1_container_name = 'todobackend'
 	def app2_container_name = 'todoui'
-    
+volumes: [
+  hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
+]
 	
 pipeline {
    agent { label 'cd-jenkins-slave' }
@@ -76,7 +78,6 @@ pipeline {
 	stage('Build Docker Image') {
 	     steps {
 		container('docker'){
-			sh("dockerd")
 			sh("docker build -f CICD-master/${app1_dockerfile_name} -t ${app1_image_tag} .")
 			sh("docker build -f CICD-master/${app2_dockerfile_name} -t ${app2_image_tag} .")
 		}
@@ -97,7 +98,8 @@ pipeline {
 					sh("docker push ${app2_image_tag}")
 				}
 			}
-		}	
+		}
+}	
 
 	//Stage 7: Deploy Application on K8s
 	stage('Deploy Application on K8s') {
@@ -118,7 +120,5 @@ pipeline {
 	 }
        }
      }
-   }	
-  }
- } 
+  }	
 }
