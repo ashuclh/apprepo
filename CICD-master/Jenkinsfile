@@ -7,14 +7,6 @@
 	def app2_dockerfile_name = 'Dockerfile-todoui'
 	def app1_container_name = 'todobackend'
 	def app2_container_name = 'todoui'
-
-podTemplate(label: label,
-        containers: [
-            containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true)
-        ],
-        volumes: [
-            hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock'),
-        ])
     
 	
 pipeline {
