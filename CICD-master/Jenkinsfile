@@ -74,17 +74,17 @@ pipeline {
 	//Stage 5: Build Docker Image	
 	stage('Build Docker Image') {
 	     steps {
-		//container('docker'){
+		container('docker'){
 			sh("docker build -f CICD-master/${app1_dockerfile_name} -t ${app1_image_tag} .")
 			sh("docker build -f CICD-master/${app2_dockerfile_name} -t ${app2_image_tag} .")
 		}
 		
 	}
-//}
+}
 	//Stage 6: Push the Image to a Docker Registry
 	stage('Push Docker Image to Docker Registry') {
 	     steps {
-		//container('docker'){
+		container('docker'){
 //			withCredentials([[$class: 'UsernamePasswordMultiBinding',
 //			credentialsId: env.DOCKER_CREDENTIALS_ID,
 //			usernameVariable: 'USERNAME',
@@ -96,7 +96,7 @@ pipeline {
 				}
 			}
 		}
-//}	
+}	
 
 	//Stage 7: Deploy Application on K8s
 	stage('Deploy Application on K8s') {
