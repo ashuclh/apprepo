@@ -75,8 +75,8 @@ pipeline {
 	stage('Build Docker Image') {
 	     steps {
 		container('docker'){
-			sh("sudo docker build -f CICD-master/${app1_dockerfile_name} -t ${app1_image_tag} .")
-			sh("sudo docker build -f CICD-master/${app2_dockerfile_name} -t ${app2_image_tag} .")
+			sh("docker build -f CICD-master/${app1_dockerfile_name} -t ${app1_image_tag} .")
+			sh("docker build -f CICD-master/${app2_dockerfile_name} -t ${app2_image_tag} .")
 		}
 		
 	}
@@ -91,8 +91,8 @@ pipeline {
 //			passwordVariable: 'PASSWORD']]) {
 //				docker.withRegistry(env.DOCEKR_REGISTRY, env.DOCKER_CREDENTIALS_ID) 
 	                        withDockerRegistry(credentialsId: 'source:ashwin-test-240009', url: 'gcr.io/ashwin-test-240009'){
-					sh("sudo docker push ${app1_image_tag}")
-					sh("sudo docker push ${app2_image_tag}")
+					sh("docker push ${app1_image_tag}")
+					sh("docker push ${app2_image_tag}")
 				}
 			}
 		}
