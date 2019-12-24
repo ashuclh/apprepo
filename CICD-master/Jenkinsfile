@@ -19,39 +19,39 @@ pipeline {
    }	
 	
 	//Stage 2: Test Code with Maven/built-in Memory
-	  stage('Test with Maven/H2') {
-	       steps {	
-	        	container('maven'){
-			sh ("pwd")
-			sh ("ls")
-			dir ("CICD-master/${app1_name}") {
-				sh ("mvn -e test -Dspring.profiles.active=dev -Dmaven.test.skip=true")
-		
-				    } 
-		}
-	}
-}	
+	//  stage('Test with Maven/H2') {
+	//      steps {	
+	//        	container('maven'){
+	//		sh ("pwd")
+	//		sh ("ls")
+	//		dir ("CICD-master/${app1_name}") {
+	//			sh ("mvn -e test -Dspring.profiles.active=dev -Dmaven.test.skip=true")
+	//	
+	//			    } 
+	//	}
+	//}
+//}	
 	
 	//Stage 3: Test Code with Maven/DB
-	stage('Test with Maven/PSQL') {
-	     steps {
-		container('kubectl'){
-			withKubeConfig([credentialsId: env.K8s_CREDENTIALS_ID,
-			serverUrl: env.K8s_SERVER_URL,
-			contextName: env.K8s_CONTEXT_NAME,
-			clusterName: env.K8s_CLUSTER_NAME]){
+	//stage('Test with Maven/PSQL') {
+	//     steps {
+	//	container('kubectl'){
+	//		withKubeConfig([credentialsId: env.K8s_CREDENTIALS_ID,
+	//		serverUrl: env.K8s_SERVER_URL,
+	//		contextName: env.K8s_CONTEXT_NAME,
+	//		clusterName: env.K8s_CLUSTER_NAME]){
 				
-				sh("kubectl apply -f postgres_test.yml")   
-			} 
+	//			sh("kubectl apply -f postgres_test.yml")   
+	//		} 
 				
-		}
-		container('maven'){ 
-			dir ("CICD-master/${app1_name}") {
-				sh ("mvn test -Dspring.profiles.active=prod -Dspring.datasource.url=jdbc:postgresql://${env.PSQL_TEST}/${env.DB_NAME} -Dspring.datasource.username=${env.DB_USERNAME} -Dspring.datasource.password=${env.DB_PASSWORD} -Dmaven.test.skip=true")
-			}
-		}
-	}
-}	
+	//	}
+	//	container('maven'){ 
+	//		dir ("CICD-master/${app1_name}") {
+	//			sh ("mvn test -Dspring.profiles.active=prod -Dspring.datasource.url=jdbc:postgresql://${env.PSQL_TEST}/${env.DB_NAME} -Dspring.datasource.username=${env.DB_USERNAME} -Dspring.datasource.password=${env.DB_PASSWORD} -Dmaven.test.skip=true")
+	//		}
+	//	}
+	//}
+//}	
 	
 	
 	
