@@ -18,19 +18,19 @@ pipeline {
 	}
    }	
 	
-	//Stage 2: Test Code with Maven/built-in Memory
-	// stage('Test with Maven/H2') {
-	//     steps {	
-	//	container('maven'){
-	//		sh ("pwd")
-	//		sh ("ls")
-	//		dir ("CICD-master/${app1_name}") {
-	//			sh ("mvn -e test -Dspring.profiles.active=dev -Dmaven.test.skip=true")
+	Stage 2: Test Code with Maven/built-in Memory
+	  stage('Test with Maven/H2') {
+	       steps {	
+	        	container('maven'){
+			sh ("pwd")
+			sh ("ls")
+			dir ("CICD-master/${app1_name}") {
+				sh ("mvn -e test -Dspring.profiles.active=dev -Dmaven.test.skip=true")
 		
-	//			    } 
-	//	}
-	//}
-//}	
+				    } 
+		}
+	}
+}	
 	
 	//Stage 3: Test Code with Maven/DB
 	stage('Test with Maven/PSQL') {
