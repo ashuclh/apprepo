@@ -15,7 +15,7 @@ podTemplate(label: label,
         volumes: [
             hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock'),
         ])
-    {
+    
 	
 pipeline {
    agent { label 'cd-jenkins-slave' }
@@ -104,8 +104,7 @@ pipeline {
 					sh("docker push ${app2_image_tag}")
 				}
 			}
-		}
-}	
+		}	
 
 	//Stage 7: Deploy Application on K8s
 	stage('Deploy Application on K8s') {
