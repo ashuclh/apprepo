@@ -20,7 +20,6 @@ volumes: [
 ]) {
 	
 node {
-   agent { label 'cd-jenkins-slave' }
    //Stage 1: Checkout code
       stage('Application Code Checkout from Git') {
          steps {    
