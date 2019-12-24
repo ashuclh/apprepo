@@ -7,6 +7,9 @@
 	def app2_dockerfile_name = 'Dockerfile-todoui'
 	def app1_container_name = 'todobackend'
 	def app2_container_name = 'todoui'
+volumes: [
+  hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
+]
 	
 pipeline {
    agent { label 'cd-jenkins-slave' }
