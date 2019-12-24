@@ -75,8 +75,8 @@ pipeline {
 	stage('Build Docker Image') {
 	     steps {
 		container('docker'){
-			sh("docker build -f ${app1_dockerfile_name} -t ${app1_image_tag} .")
-			sh("docker build -f ${app2_dockerfile_name} -t ${app2_image_tag} .")
+			sh("docker build -f CICD-master/${app1_dockerfile_name} -t ${app1_image_tag} .")
+			sh("docker build -f CICD-master/${app2_dockerfile_name} -t ${app2_image_tag} .")
 		}
 		
 	}
