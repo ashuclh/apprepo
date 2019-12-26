@@ -89,12 +89,10 @@ pipeline {
 //			credentialsId: env.DOCKER_CREDENTIALS_ID,
 //			usernameVariable: 'USERNAME',
 //			passwordVariable: 'PASSWORD']]) {
-			docker.withRegistry('https://gcr.io', 'gcr:ashwin-test-240009'){
-			  docker.image(${app1_image_tag}).push("${env.BUILD_NUMBER}")
-			  docker.image(${app2_image_tag}).push("${env.BUILD_NUMBER}")	
-	                        //withDockerRegistry(credentialsId: 'gcr:ashwin-test-240009', url: 'https://gcr.io'){
-				//	sh("docker push ${app1_image_tag}")
-				//	sh("docker push ${app2_image_tag}")
+			
+	                        withDockerRegistry(credentialsId: 'gcr:ashwin-test-240009', url: 'https://gcr.io'){
+					sh("gcloud docker -- push ${app1_image_tag}")
+					sh("gcloud docker -- push ${app2_image_tag}")
 				}
 			}
 		}
