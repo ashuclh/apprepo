@@ -89,7 +89,7 @@ pipeline {
 //			credentialsId: env.DOCKER_CREDENTIALS_ID,
 //			usernameVariable: 'USERNAME',
 //			passwordVariable: 'PASSWORD']]) {
-				docker.withRegistry('https://gcr.io', 'gcr:ashwin-test-240009') 
+			docker.withRegistry('https://gcr.io', 'gcr:ashwin-test-240009') {
 	                        //withDockerRegistry(credentialsId: 'gcr:ashwin-test-240009', url: 'https://gcr.io'){
 					sh("docker push ${app1_image_tag}")
 					sh("docker push ${app2_image_tag}")
