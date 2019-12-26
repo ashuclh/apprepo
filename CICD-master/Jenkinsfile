@@ -7,7 +7,6 @@
 	def app2_dockerfile_name = 'Dockerfile-todoui'
 	def app1_container_name = 'todobackend'
 	def app2_container_name = 'todoui'
-    
 	
 pipeline {
    agent { label 'cd-jenkins-slave' }
@@ -76,7 +75,6 @@ pipeline {
 	stage('Build Docker Image') {
 	     steps {
 		container('docker'){
-			sh("dockerd")
 			sh("docker build -f CICD-master/${app1_dockerfile_name} -t ${app1_image_tag} .")
 			sh("docker build -f CICD-master/${app2_dockerfile_name} -t ${app2_image_tag} .")
 		}
@@ -97,7 +95,8 @@ pipeline {
 					sh("docker push ${app2_image_tag}")
 				}
 			}
-		}	
+		}
+}	
 
 	//Stage 7: Deploy Application on K8s
 	stage('Deploy Application on K8s') {
@@ -114,10 +113,9 @@ pipeline {
 				sh("kubectl set image deployment/${app1_name} ${app1_container_name}=${app1_image_tag}")
 				sh("kubectl apply -f ${app2_name}.yml")
 				sh("kubectl set image deployment/${app2_name} ${app2_container_name}=${app2_image_tag}")
-	     }     
-	  }
-        }
-      }
-    }	
-  }
+	    }     
+	 }
+       }
+     }
+  }	
 }
