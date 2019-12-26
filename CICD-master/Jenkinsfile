@@ -93,9 +93,7 @@ pipeline {
 	                //        withDockerRegistry(credentialsId: 'gcr:ashwin-test-240009', url: 'https://gcr.io'){
 			          withCredentials([file(credentialsId: 'GC_KEY', variable: 'GC_KEY')]){
               			    sh "cat '$GC_KEY' | docker login -u _json_key --password-stdin https://gcr.io"
-			            sh "gcloud auth activate-service-account --key-file='$GC_KEY'"
-                                    sh "gcloud auth configure-docker"
-                                    
+			       
                                     echo "Pushing image To GCR"
 					sh("docker push ${app1_image_tag}")
 					sh("docker push ${app2_image_tag}")
