@@ -98,7 +98,7 @@ pipeline {
                                     GLOUD_AUTH = sh (
 				          script: 'gcloud auth print-access-token',
 				          returnStdout: true
-				       ).trim()
+				       )
                                     echo "Pushing image To GCR"
 					sh("docker push ${app1_image_tag}")
 					sh("docker push ${app2_image_tag}")
