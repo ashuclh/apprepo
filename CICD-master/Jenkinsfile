@@ -9,7 +9,7 @@
 	def app2_container_name = 'todoui'
 	
 pipeline {
-   agent { label 'cd-jenkins-slave' }
+   agent { label 'Mylabel' }
    //Stage 1: Checkout code
    stages {
       stage('Application Code Checkout from Git') {
