@@ -105,12 +105,12 @@ pipeline {
 	//Stage 7: Deploy Application on K8s
 	stage('Deploy Application on K8s') {
 	     steps {
-		container('kubectl'){
-			withKubeConfig(caCertificate: '', clusterName: 'jenkins-cd',
-	                contextName: 'env.K8s_CONTEXT_NAME',
-		        credentialsId: 'kubeconfig', 
-		        namespace: 'default', 
-		        serverUrl: 'env.K8s_SERVER_URL') {
+		//container('kubectl'){
+		      withKubeConfig(credentialsId: 'kubeconfig', clusterName: 'jenkins-cd'){
+	               // contextName: 'env.K8s_CONTEXT_NAME',
+		       // credentialsId: 'kubeconfig', 
+		        //namespace: 'default', 
+		        //serverUrl: 'env.K8s_SERVER_URL') {
 			//withKubeConfig([credentialsId: env.K8s_CREDENTIALS_ID,
 			//serverUrl: env.K8s_SERVER_URL,
 			//contextName: env.K8s_CONTEXT_NAME,
