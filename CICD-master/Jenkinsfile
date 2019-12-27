@@ -111,12 +111,12 @@ pipeline {
 			contextName: env.K8s_CONTEXT_NAME]){
 		//	clusterName: env.K8s_CLUSTER_NAME]){
 				sh("kubectl get pods")
-				sh("kubectl apply -f configmap.yml")
-				sh("kubectl apply -f secret.yml")
-				sh("kubectl apply -f postgres.yml")
-				sh("kubectl apply -f ${app1_name}.yml")
+				sh("kubectl apply -f CICD-master/configmap.yml")
+				sh("kubectl apply -f CICD-master/secret.yml")
+				sh("kubectl apply -f CICD-master/postgres.yml")
+				sh("kubectl apply -f CICD-master/${app1_name}.yml")
 				sh("kubectl set image deployment/${app1_name} ${app1_container_name}=${app1_image_tag}")
-				sh("kubectl apply -f ${app2_name}.yml")
+				sh("kubectl apply -f $CICD-master/{app2_name}.yml")
 				sh("kubectl set image deployment/${app2_name} ${app2_container_name}=${app2_image_tag}")
 	    }     
 	 }
