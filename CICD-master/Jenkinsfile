@@ -109,7 +109,7 @@ pipeline {
 			withKubeConfig([credentialsId: env.K8s_CREDENTIALS_ID,
 			serverUrl: env.K8s_SERVER_URL,
 			contextName: env.K8s_CONTEXT_NAME]){
-		//	clusterName: env.K8s_CLUSTER_NAME]){
+	        	clusterName: env.K8s_CLUSTER_NAME]){
 				sh("kubectl get pods")
 				sh("kubectl apply -f CICD-master/configmap.yml")
 				sh("kubectl apply -f CICD-master/secret.yml")
