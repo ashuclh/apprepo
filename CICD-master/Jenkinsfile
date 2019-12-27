@@ -106,7 +106,7 @@ pipeline {
 	stage('Deploy Application on K8s') {
 	     steps {
 		container('kubectl'){
-		      withKubeConfig(credentialsId: 'kubeconfig', clusterName: 'jenkins-cd'){
+		      withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'env.K8s_SERVER_URL']){
 	               // contextName: 'env.K8s_CONTEXT_NAME',
 		       // credentialsId: 'kubeconfig', 
 		        //namespace: 'default', 
